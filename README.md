@@ -6,15 +6,12 @@ deutsche Rechercheanfragen, Programmzitate mit PDF-Seiten und Fraktionsstimmen.
 Textvorschläge bleiben ungeprüft; nur explizit geprüfte Zuordnungen erlauben
 einen Richtungsvergleich. Keine automatische Erfüllungsbewertung.
 
-**KI-/Agenten-Einstieg:** [`AGENTS.md`](AGENTS.md)  
 **Aktueller Stand:** [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)
 
 ## Projektstruktur
 
 ```text
 ParteiHack/
-├── AGENTS.md              # Zentrale Regeln und Einstieg für KI-Agenten
-├── CLAUDE.md / GEMINI.md  # Verweise auf die zentrale Anleitung
 ├── .github/              # Copilot-Einstieg, keine aktive CI
 ├── docs/                 # Stand, Architektur, API, Datenmodell und Methodik
 ├── src/partei_hack/       # Installierbare Anwendung
@@ -143,7 +140,7 @@ Oberfläche und Server prüfen beim Start einen gemeinsamen Web-API-Stand.
 Bei einem Neustart-Hinweis muss der alte Server vollständig beendet werden.
 Ein zweiter Server auf demselben Port wird ausdrücklich abgewiesen.
 
-### Dein Beispiel als direkte Anfrage
+### Beispiel als direkte Anfrage
 
 ```powershell
 uv run parteihack compare "Bundestag 2021 bis 2025 Grüne" --online --output data/exports/gruene-probe
@@ -286,3 +283,9 @@ bei der Installation ausgelöst.
 - [Wahlprogrammvergleich und Versprechenprüfung](docs/COMPARISON.md)
 - [Entwicklungsleitfaden](CONTRIBUTING.md)
 - [Beispielabläufe](examples/README.md)
+
+## Autor
+
+Felix Lazzaro
+
+felix.lazzaro@web.de
