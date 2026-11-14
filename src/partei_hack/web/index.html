@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#183d32">
+  <title>Parlamentslupe · Parlament verstehen</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23183d32'/%3E%3Cg fill='none' stroke='%23d1ec9c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='17' cy='17' r='12'/%3E%3Cpath d='m26 26 9 9M13 24V10h5a5 5 0 0 1 0 10h-5'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Parlamentslupe Startseite">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="17" cy="17" r="12"/><path d="m26 26 9 9M13 24V10h5a5 5 0 0 1 0 10h-5"/></svg></span>
+      <span>Parlamentslupe<span class="brand-subtitle">PARLAMENT VERSTEHEN</span></span>
+    </a>
+    <div class="nav-label">DEIN RECHERCHEPLATZ</div>
+    <nav aria-label="Hauptnavigation">
+      <button class="nav-item active" data-view="polls" aria-current="page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span class="nav-text">Übersicht</span><span class="nav-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="nav-item" data-view="programs">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6l2 2 2-2h6v16h-6l-2 1-2-1H4zM12 6v15"/></svg>
+        <span class="nav-text">Wahlprogramme</span>
+      </button>
+      <button class="nav-item" data-view="compare">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg>
+        <span class="nav-text">Vergleich</span>
+      </button>
+      <button class="nav-item" data-view="method">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v1"/></svg>
+        <span class="nav-text">Methodik & Quellen</span>
+      </button>
+    </nav>
+    <div class="sidebar-note"><span class="small-spark" aria-hidden="true">✳</span><strong>Belege statt Bauchgefühl.</strong><p>Politisches Handeln einordnen. Mit Originalquellen und offenen Grenzen.</p></div>
+    <div class="sidebar-bottom"><span class="status-dot"></span> Lokal auf deinem Rechner<span>Keine Cloud. Kein Parteien-Score.</span></div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar">
+      <div class="breadcrumb">Recherche <span>/</span> <strong id="breadcrumb-current">Übersicht</strong></div>
+      <span class="local-badge"><span class="status-dot"></span> Lokaler Datenbestand</span>
+    </header>
+    <main id="main">
+      <section class="intro">
+        <div><div class="eyebrow"><span></span> DEMOKRATIE, NACHVOLLZIEHBAR.</div>
+          <h1>Was wurde versprochen.<br><span>Wie wurde abgestimmt?</span></h1>
+          <p>Erkunde das Abstimmungsverhalten einer Fraktion.<br class="desktop-break"> Wähle dein Parlament, die Wahlperiode und deinen Fokus.</p>
+        </div>
+        <div class="intro-stamp" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M15 40h70M20 73h60M15 80h70M25 44v25m17-25v25m16-25v25m17-25v25M20 35l30-16 30 16z"/><circle cx="80" cy="77" r="14"/><path d="m74 77 4 4 8-9"/></svg><span>Öffentliche Daten.<br>Deine Recherche.</span></div>
+      </section>
+
+      <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+
+      <section class="selection-card" aria-labelledby="selection-heading">
+        <div class="section-heading"><h2 id="selection-heading">Deine Untersuchung</h2><span class="quiet-label">Alles auswählen. Einmal laden.</span></div>
+        <label class="selection-consent checkbox-label"><input id="auto-choices" type="checkbox"> Auswahldaten beim Auswählen online ergänzen</label>
+        <p class="fine-print">Einmalige Freigabe für diese Seite: Parlamente, Wahlperioden, Fraktionen, Programm-Metadaten und Abstimmungstitel. Noch keine Einzelstimmen oder PDFs. Vorhandene Daten und API-Cache werden genutzt.</p>
+        <form id="selection-form">
+          <div class="selection-grid">
+            <div class="field"><label for="parliament"><span class="step">01</span> Parlament</label><select id="parliament" required><option value="">Parlament auswählen</option></select><button type="button" class="text-button" id="load-parliaments">Parlamente online laden <span aria-hidden="true">↻</span></button></div>
+            <div class="field"><label for="period"><span class="step">02</span> Wahlperiode</label><select id="period" required disabled><option value="">Zuerst Parlament wählen</option></select><button type="button" class="text-button" id="load-periods" disabled>Wahlperioden online laden <span aria-hidden="true">↻</span></button></div>
+            <div class="field"><label for="fraction"><span class="step">03</span> Fraktion</label><select id="fraction" required disabled><option value="">Zuerst Wahlperiode wählen</option></select><button type="button" class="text-button" id="load-fractions" disabled>Fraktionen online laden <span aria-hidden="true">↻</span></button></div>
+          </div>
+          <div class="selection-extras">
+            <div class="field"><label for="program">Programm / Wahlpartei (optional)</label><select id="program" disabled><option value="">Ohne Programm – nur Abstimmungen</option></select><p id="program-status" class="fine-print" role="status">Wahlperiode wählen, dann Programm ausdrücklich auswählen.</p></div>
+            <div class="field"><label id="poll-selection-label">Abstimmungen · Mehrfachauswahl</label>
+              <details id="poll-picker" class="poll-picker"><summary id="poll-selection-summary">Abstimmungen auswählen …</summary>
+                <div class="poll-picker-menu"><label class="checkbox-label"><input id="all-polls" type="checkbox"> Alle Abstimmungen dieser Wahlperiode</label>
+                <label for="poll-search" class="sr-only">Abstimmungstitel filtern</label><input id="poll-search" type="search" placeholder="Abstimmungstitel suchen …">
+                <div id="poll-options" role="group" aria-labelledby="poll-selection-label"></div></div>
+              </details>
+              <p id="choices-status" class="fine-print" role="status">Titel werden vor den Einzelstimmen geladen.</p>
+            </div>
+          </div>
+          <div class="selection-footer"><p><span class="outline-dot" aria-hidden="true"></span> Stimmen und gewählte PDF erst nach Bestätigung.</p><div class="program-actions"><button type="button" id="local-investigate" class="text-button" disabled>Nur lokale Daten anzeigen</button><button type="submit" id="investigate" class="primary-button" disabled>Auswahl laden & untersuchen <span aria-hidden="true">↗</span></button></div></div>
+        </form>
+      </section>
+
+      <div class="results-toolbar">
+        <div class="tabs" aria-label="Recherchebereiche">
+          <button class="tab active" data-view="polls" aria-pressed="true">Abstimmungen</button>
+          <button class="tab" data-view="programs" aria-pressed="false">Wahlprogramme</button>
+          <button class="tab" data-view="compare" aria-pressed="false">Vergleich</button>
+          <button class="tab" data-view="method" aria-pressed="false">Methodik</button>
+        </div>
+        <button id="export" class="secondary-button compact" disabled><span aria-hidden="true">↓</span> JSON exportieren</button>
+      </div>
+
+      <section id="view-polls" class="view" aria-label="Abstimmungsübersicht">
+        <div id="empty-state" class="empty-state"><span class="empty-symbol" aria-hidden="true">⌕</span><h2>Deine Recherche beginnt hier.</h2><p>Wähle Parlament, Wahlperiode und Fraktion aus.<br>Fehlende Stammdaten kannst du oben gezielt online laden.</p><span class="quiet-label">Keine erfundenen Ergebnisse. Nur belegte Daten.</span></div>
+        <div id="analysis" hidden>
+          <div class="context-row"><h2 id="analysis-title"></h2><span id="coverage-badge" class="badge amber"></span></div>
+          <div class="stats-grid">
+            <article class="stat-card"><span class="stat-label">Abstimmungen lokal</span><div><strong id="stat-polls">–</strong><span id="stat-available"></span></div><p>Umfang der ausgewählten Wahlperiode</p></article>
+            <article class="stat-card"><span class="stat-label">Stimmenabdeckung</span><div><strong id="stat-complete">–</strong><span id="stat-filtered"></span></div><p>Gefilterte Polls mit geprüftem Stimmenimport</p></article>
+            <article class="stat-card accent"><span class="stat-label">Stimmereignisse der Fraktion</span><div><strong id="stat-votes">–</strong><span class="stat-small">dokumentiert</span></div><p>In den aktuell gefilterten Abstimmungen</p></article>
+          </div>
+          <div class="coverage-notice"><span aria-hidden="true">ⓘ</span><p id="coverage-notice"></p><button type="button" class="text-button" id="open-import">Daten importieren <span aria-hidden="true">↗</span></button></div>
+          <div class="data-grid">
+            <section class="polls-card" aria-labelledby="polls-heading">
+              <div class="section-heading"><div><h2 id="polls-heading">Abstimmungen im Detail</h2><p class="section-subtitle">Dokumentiertes Verhalten. Keine Erfüllungsbewertung.</p></div><span id="result-count" class="count-badge"></span></div>
+              <form id="filter-form" class="filters">
+                <label class="search-field"><span class="sr-only">Abstimmungstitel durchsuchen</span><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Abstimmungstitel durchsuchen …" maxlength="200"></label>
+                <div class="date-filters"><label>Von<input id="since" type="date"></label><label>Bis<input id="until" type="date"></label><button class="secondary-button compact" type="submit">Filtern</button><button id="reset-filters" class="text-button" type="button">Zurücksetzen</button></div>
+              </form>
+              <div id="poll-list" class="poll-list"></div>
+              <div id="pagination" class="pagination" hidden><button id="prev-page" class="secondary-button compact">← Zurück</button><span id="page-label"></span><button id="next-page" class="secondary-button compact">Weiter →</button></div>
+            </section>
+            <aside class="distribution-card" aria-labelledby="distribution-heading"><span class="eyebrow">DER DATENBLICK</span><h2 id="distribution-heading">So wurde abgestimmt</h2><p id="distribution-fraction" class="section-subtitle"></p><div id="distribution"></div><div class="chart-note">Gezählt werden Stimmereignisse, nicht verschiedene Personen. Fehlende Stimmen werden nicht als Nichtteilnahme gezählt.</div><div class="source-note"><span class="source-icon" aria-hidden="true">↗</span><div><strong>Zurück zur Quelle</strong><p>Alle Ergebnisse stammen aus dem lokalen Import der abgeordnetenwatch-API.</p></div></div></aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-programs" class="view" aria-labelledby="programs-heading" hidden>
+        <div class="content-card">
+          <span class="eyebrow">VOM PROGRAMM ZUM BELEG</span>
+          <h2 id="programs-heading">Wahlprogramm laden & vergleichen</h2>
+          <p>Wahlpartei und Fraktion sind nicht dasselbe. Wähle das Programm der zugehörigen Wahl ausdrücklich aus – auch bei einer gemeinsamen CDU/CSU-Fraktion.</p>
+          <div class="program-actions"><button type="button" id="load-programs" class="secondary-button" disabled>Programmliste online laden ↻</button><span class="fine-print">Nur Metadaten zur ausgewählten Wahl, keine Sammeldownloads.</span></div>
+          <form id="program-form">
+            <p class="fine-print">Das Programm oben in „Deine Untersuchung“ auswählen. Die gemeinsame Ladeaktion erstellt den Vergleich direkt; hier kannst du den Originaltext separat lesen.</p>
+            <div class="program-actions">
+              <button type="button" id="load-program" class="secondary-button" disabled>Programm laden & Text anzeigen ↓</button>
+              <button id="compare-program" class="primary-button" disabled>Vergleich starten <span aria-hidden="true">↗</span></button>
+            </div>
+          </form>
+          <p class="fine-print">Fehlt die ausgewählte Original-PDF, kannst du ihren gezielten Download bestätigen. Danach wird der Text lokal pro PDF-Seite extrahiert. Keine OCR: Scans ohne Textschicht können nicht ausgewertet werden.</p>
+          <div id="program-results"></div>
+        </div>
+      </section>
+
+      <section id="view-compare" class="view" aria-labelledby="compare-heading" hidden>
+        <div class="content-card">
+          <span class="eyebrow">PROGRAMM UND VERHALTEN NEBENEINANDER</span>
+          <h2 id="compare-heading">Wahlprogramm ↔ Fraktionsstimmen</h2>
+          <p id="compare-selection">Wähle unter „Wahlprogramme“ ein Programm zur untersuchten Wahlperiode.</p>
+          <p class="fine-print">Der gemeinsame Start berücksichtigt die oben ausgewählten Abstimmungen. Die Abdeckung der gesamten Wahlperiode wird separat ausgewiesen. Worttreffer sind ungeprüfte Vorschläge, keine Richtungs- oder Erfüllungsbewertung.</p>
+          <div class="program-actions">
+            <button type="button" id="choose-program" class="secondary-button">Programm auswählen</button>
+            <button type="button" id="start-comparison" class="primary-button" disabled>Vergleich starten ↗</button>
+            <button type="button" id="complete-comparison" class="secondary-button" disabled>Fehlende Daten online nachladen ↻</button>
+            <button type="button" id="enrich-evidence" class="secondary-button" disabled>Amtliche Belege ergänzen ↗</button>
+            <button type="button" id="export-comparison" class="secondary-button" disabled>Vergleich als JSON ↓</button>
+          </div>
+          <div id="comparison-results" aria-live="polite"><p class="fine-print">Noch kein Vergleich erstellt.</p></div>
+        </div>
+      </section>
+
+      <section id="view-method" class="view" aria-labelledby="method-heading" hidden>
+        <div class="content-card"><span class="eyebrow">TRANSPARENZ GEHÖRT DAZU</span><h2 id="method-heading">Was die Daten sagen. Und was nicht.</h2><div class="method-grid">
+          <article><span class="method-number">01</span><h3>Parlament ≠ Regierung</h3><p>Bundestag und Landtage sind Parlamente. Die Wahlperiode bestimmt den historischen Zeitraum; die ausgewählte Fraktion muss nicht Teil der Regierung gewesen sein.</p></article>
+          <article><span class="method-number">02</span><h3>Fraktion ≠ Partei</h3><p>Stimmen werden der dokumentierten Fraktion am Abstimmungstag zugeordnet. Fraktionswechsel sind möglich. Heutige Parteizugehörigkeit ist keine historische Mitgliedschaft.</p></article>
+          <article><span class="method-number">03</span><h3>Lücken bleiben sichtbar</h3><p>Ja, Nein, Enthaltung und Nichtteilnahme sind getrennte Kategorien. Fehlende Daten sind keine Nichtteilnahme. „API-vollständig“ beschreibt einen technischen Import, keine amtlich geprüfte Gesamtabdeckung.</p></article>
+          <article><span class="method-number">04</span><h3>Verhalten ≠ Erfüllung</h3><p>Eine Abstimmung beweist kein erfülltes oder gebrochenes Wahlversprechen. Programmtexttreffer sind lexikalische Vorschläge. Richtungszuordnungen benötigen Belege und explizite Nutzerprüfung.</p></article>
+        </div><div class="method-source"><h3>Datenquelle & schonender Zugriff</h3><p><a href="https://www.abgeordnetenwatch.de/api" target="_blank" rel="noopener noreferrer">Öffentliche API von abgeordnetenwatch.de ↗</a> · API-Daten: CC0 1.0. Diese Lizenz gilt nicht pauschal für verlinkte Programm-PDFs.</p><p>Online-Aktionen starten nur mit deiner Bestätigung. Der Client nutzt Cache und mindestens 2,1 Sekunden Abstand zwischen Requests. Größere Importe möglichst zwischen 22 und 6 Uhr. Keine parallelen Importe in weiteren Prozessen starten.</p><p>Die gemeinsame Ladeaktion importiert nur die ausdrücklich ausgewählten oder bewusst alle angebotenen Abstimmungen. Geprüfte Richtungsvergleiche bleiben in der CLI.</p></div></div>
+      </section>
+      <footer class="page-footer"><span>Parlamentslupe <span class="footer-dot">·</span> Offene Daten. Offene Fragen.</span><a href="https://www.abgeordnetenwatch.de" target="_blank" rel="noopener noreferrer">Daten von abgeordnetenwatch.de ↗</a></footer>
+    </main>
+  </div>
+
+   <dialog id="online-dialog" aria-labelledby="online-heading">
+     <div class="dialog-heading"><h2 id="online-heading">Online-Daten laden</h2><button type="button" class="icon-button" data-close="online-dialog" aria-label="Dialog schließen">×</button></div>
+     <p id="online-description"></p>
+     <p class="fine-print">Cache und mindestens 2,1 Sekunden Abstand zwischen Requests. Andere CLI-Importe bitte nicht gleichzeitig ausführen. Downloads können scheitern, wenn die Quelle fehlt oder keine lesbare PDF liefert.</p>
+     <label id="compare-votes-option" class="checkbox-label" hidden><input id="compare-load-votes" type="checkbox"> Fehlende Abstimmungsdaten als begrenzte Stichprobe ergänzen</label>
+     <div id="import-options" hidden><label for="max-polls">Maximale Zahl der Abstimmungen</label><select id="max-polls"><option value="1">1 Abstimmung mit Einzelstimmen</option><option value="3">3 Abstimmungen mit Einzelstimmen</option><option value="5">5 Abstimmungen mit Einzelstimmen</option></select><p class="fine-print">Technische Stichprobe in API-Reihenfolge, nicht repräsentativ. Zusätzlich werden historische Mandate, Fraktionen und Programm-Metadaten importiert. Der Vorgang kann einige Minuten dauern. Ein wiederholter Stichprobenimport erweitert nicht zwingend die vorhandene Auswahl.</p></div>
+     <div class="dialog-actions"><button type="button" class="secondary-button" data-close="online-dialog">Abbrechen</button><button id="confirm-online" class="primary-button">Online-Abruf bestätigen ↗</button></div>
+   </dialog>
+  <dialog id="poll-dialog" class="detail-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><span class="eyebrow">ABSTIMMUNG IM DETAIL</span><button type="button" class="icon-button" data-close="poll-dialog" aria-label="Dialog schließen">×</button></div><h2 id="detail-title">Abstimmung</h2><div id="poll-detail"></div></dialog>
+  <noscript><p class="feedback">Für diese lokale Oberfläche muss JavaScript aktiviert sein. Alternativ ist die CLI verfügbar: uv run parteihack --help</p></noscript>
+</body>
+</html>

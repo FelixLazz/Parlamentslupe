@@ -1,0 +1,1 @@
+"""Öffentliche API-Anbindung."""
